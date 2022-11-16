@@ -1,16 +1,16 @@
 # Contrastive Video Question Answereing via Video Graph Transformer
 <details open>
-<summary> <b>Introduction</b> </summary>
+<summary> <b>Abstract</b> </summary>
+We propose to perform video question answering (VideoQA) in a <b>Co</b>ntrastive manner via a <b>V</b>ideo <b>G</b>raph <b>T</b>ransformer model (CoVGT). CoVGT's uniqueness and superiority are three-fold: 
 
-Existing transformer-style models only demonstrate their success in answering questions that involve the coarse recognition or scene-level description of video contents. Their performance remains either unknown or weak in answering questions that emphasize <b>fine-grained visual relation reasoning</b>, especially the <b>causal</b> and <b>temporal</b> relations that feature video <b>dynamics at action and event level</b>. In this paper, we propose <b>Video Graph Transformer (VGT)</b> 
-model to advance VideoQA from coarse recognition and scene-level description to fine-gained visual relation reasoning and cognition-level understanding of the dynamic visual contents. Specifically, we make the following contributions:
+* It proposes a dynamic graph transformer module which encodes video by explicitly capturing the visual objects, their relations and dynamics, for complex spatio-temporal reasoning. 
+* It designs separate video and text transformers for contrastive learning between the video and text to perform QA, instead of multi-modal transformer for answer classification. Fine-grained video-text communication is done by additional cross-modal interaction modules. 
+* It is optimized by the joint fully- and self-supervised contrastive objectives between the correct and incorrect answers, as well as the relevant and irrelevant questions respectively. 
 
-- We design <b>dynamic graph transformer (DGT) </b> to encode visual graph dynamics for relation reasoning in space-time. 
-- We demonstrate that supervised <b>contrastive learning</b> significantly outperforms classification for multi-choice cross-modal video understanding. Also, a <b>fine-grained</b> cross-modal interaction can help improve performance.
-- We demonstrate that pretraining visual graph transformer can benefit video-language understanding towards a more <b>data-efficient</b> and <b>fine-grained</b> direction.
+With superior video encoding and QA solution, we show that CoVGT can achieve much better performances than previous arts on video reasoning tasks. Its performances even surpass those models that are pretrained with millions of external data. We further show that CoVGT can also benefit from cross-modal pretraining, yet with orders of magnitude smaller data. The results demonstrate the effectiveness and superiority of CoVGT, and additionally reveal its potential for more data-efficient pretraining. We hope our success can advance VideoQA beyond coarse recognition/description towards fine-grained relation reasoning of video contents.
 </details>
 
-See our [poster](https://doc-doc.github.io/docs/VGT-ECCV22-poster.pdf) at ECCV'22 for a quick overview of the work.
+This is an extended work (submittd to T-PAMI) of our priliminary publication at [ECCV'22](https://link.springer.com/chapter/10.1007/978-3-031-20059-5_3).
 
 <!-- ![teaser](misc/VGT.png) -->
 <div align="center">
