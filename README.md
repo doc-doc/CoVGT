@@ -1,4 +1,4 @@
-# [VGT](https://arxiv.org/abs/2207.05342): Video Graph Transformer for Video Question Answering
+# Contrastive Video Question Answereing via Video Graph Transformer
 <details open>
 <summary> <b>Introduction</b> </summary>
 
