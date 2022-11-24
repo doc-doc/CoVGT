@@ -23,8 +23,8 @@ class Bert(nn.Module):
             self.bert = RobertaModel.from_pretrained("roberta-base", config=config)
         self.tokenizer = bert_tokenizer
         
-        for name, param in self.bert.named_parameters():
-            param.requires_grad = False
+        # for name, param in self.bert.named_parameters():
+        #     param.requires_grad = False
         
     def forward(self, tokens): #, seq_len, seg_feats, seg_num):
         attention_mask = (tokens != self.tokenizer.pad_token_id).float()

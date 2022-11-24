@@ -313,7 +313,7 @@ class VideoQADataset(Dataset):
                 choices = [str(cur_sample["a" + str(i)]) for i in range(self.mc)]
                 answer_id = choices.index(ans) if ans in choices else -1
 
-                if self.mode not in ['val', 'test'] and rd.random() < 0:
+                if self.mode not in ['val', 'test'] and rd.random() < 0.3:
                     # type = cur_sample['type']
                     # if type == 'TP': type = 'TN'
                     

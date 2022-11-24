@@ -64,7 +64,7 @@ def main(args):
         dropout=args.dropout,
         T=args.max_feats,
         Q=args.qmax_words,
-        # vocab_size = bert_tokenizer.vocab_size,
+        vocab_size = bert_tokenizer.vocab_size,
         baseline=args.baseline,
         bnum=args.bnum
     )
