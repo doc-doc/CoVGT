@@ -10,7 +10,7 @@ We propose to perform video question answering (VideoQA) in a <b>Co</b>ntrastive
 With superior video encoding and QA solution, we show that CoVGT can achieve much better performances than previous arts on video reasoning tasks. Its performances even surpass those models that are pretrained with millions of external data. We further show that CoVGT can also benefit from cross-modal pretraining, yet with orders of magnitude smaller data. The results demonstrate the effectiveness and superiority of CoVGT, and additionally reveal its potential for more data-efficient pretraining. We hope our success can advance VideoQA beyond coarse recognition/description towards fine-grained relation reasoning of video contents.
 </details>
 
-This is an extended work (submittd to T-PAMI) of our priliminary publication at [ECCV'22](https://link.springer.com/chapter/10.1007/978-3-031-20059-5_3).
+This is an extended work (submitted to T-PAMI) of our priliminary publication at [ECCV'22](https://link.springer.com/chapter/10.1007/978-3-031-20059-5_3). This repo is based on [VGT](https://github.com/sail-sg/VGT). 
 
 <!-- ![teaser](misc/VGT.png) -->
 <div align="center">
