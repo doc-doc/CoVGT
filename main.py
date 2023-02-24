@@ -94,12 +94,9 @@ def main(args):
         logging.info("number of train instances: {}".format(len(train_loader.dataset)))
         logging.info("number of val instances: {}".format(len(val_loader.dataset)))
 
-    # Loss + Optimizer
-    if args.dataset == "ivqa":
-        criterion = LogSoftmax(dim=1)
-    else:
-        criterion = nn.CrossEntropyLoss(ignore_index=-1)
-        # criterion = MultipleChoiceLoss()
+   
+    criterion = nn.CrossEntropyLoss(ignore_index=-1)
+    # criterion = MultipleChoiceLoss()
     params_for_optimization = list(p for p in model.parameters() if p.requires_grad)
     optimizer = optim.Adam(
         params_for_optimization, lr=args.lr, weight_decay=args.weight_decay

@@ -61,7 +61,7 @@ class VideoQADataset(Dataset):
         if self.mode not in ['val', 'test']:
             self.all_answers = set(self.data['answer'])
             self.all_questions = set(self.data['question'])
-            self.ans_group, self.qsn_group = group(self.data, gt=False)
+            self.ans_group, self.qsn_group = group(self.data, gt=True)
 
         if self.dset == 'star':
             self.vid_clips = load_file(osp.dirname(csv_path)+f'/clips_{self.mode}.json')
@@ -268,9 +268,9 @@ class VideoQADataset(Dataset):
         type = 'null' if 'type' not in cur_sample  else cur_sample['type'] 
         if self.lvq and self.mode not in ['val','test']:
             # type = cur_sample['type']
-            # if type == 'TP': type = 'TN'
+            if type == 'TP': type = 'TN'
             
-            type = get_qsn_type(question_txt, type)
+            # type = get_qsn_type(question_txt, type)
             neg_num = 5
             if type not in self.qsn_group or len(self.qsn_group[type]) < neg_num-1:
                 valid_qsncans = self.all_questions #self.qsn_group[self.mtype]
@@ -314,10 +314,10 @@ class VideoQADataset(Dataset):
                 answer_id = choices.index(ans) if ans in choices else -1
 
                 if self.mode not in ['val', 'test'] and rd.random() < 0.3:
-                    # type = cur_sample['type']
-                    # if type == 'TP': type = 'TN'
+                    type = cur_sample['type']
+                    if type == 'TP': type = 'TN'
                     
-                    type = get_qsn_type(question_txt, type)
+                    #type = get_qsn_type(question_txt, type) #type is used to distinguish Question or Reason in CausalVid-QA
                     
                     if type not in self.ans_group or len(self.ans_group[type]) < self.mc-1:
                         valid_anscans = self.all_answers #self.ans_group[self.mtype]
@@ -369,7 +369,7 @@ class VideoQADataset(Dataset):
             seq_len = torch.tensor([len(ans) for ans in ans_token_ids], dtype=torch.long)
         else:
             answer_txts = cur_sample["answer"]
-            answer_id = self.a2id.get(answer_txts, -1)  # put an answer_id -1 if not in top answers, that will be considered wrong during evaluation
+            answer_id = self.a2id.get(answer_txts, -1)  # answer_id -1 if not in top answers, that will be considered as wrong prediction during evaluation
            
         return {
             "video_id": vid_id,

@@ -6,8 +6,8 @@ map_name = {'CW': 'Why', 'CH': 'How', 'TN': 'Bef&Aft', 'TC': 'When',
             'DC': 'Cnt', 'DL': 'Loc', 'DO': 'Other', 'C': 'Acc_C', 
             'T': 'Acc_T', 'D': 'Acc_D'}
 
-def accuracy_metric(sample_list_file, result_file):
-    sample_list = load_file(sample_list_file)
+def accuracy_metric(sample_list, result):
+    
     group = {'CW':[], 'CH':[], 'TN':[], 'TC':[], 'DC':[], 'DL':[], 'DO':[]}
     for id, row in sample_list.iterrows():
         qns_id = str(row['video_id']) + '_' + str(row['qid'])
@@ -17,7 +17,7 @@ def accuracy_metric(sample_list_file, result_file):
             qtype = 'TN'
         group[qtype].append(qns_id)
 
-    preds = load_file(result_file)
+    preds = result
     group_acc = {'CW': 0, 'CH': 0, 'TN': 0, 'TC': 0, 'DC': 0, 'DL': 0, 'DO': 0}
     group_cnt = {'CW': 0, 'CH': 0, 'TN': 0, 'TC': 0, 'DC': 0, 'DL': 0, 'DO': 0}
     overall_acc = {'C':0, 'T':0, 'D':0}
@@ -48,12 +48,24 @@ def accuracy_metric(sample_list_file, result_file):
         group_cnt[qtype] = overall_cnt[qtype]
 
     for qtype in group_acc:
+        if group_cnt[qtype] == 0: continue
         print(map_name[qtype], end='\t')
     print('')
     for qtype, acc in group_acc.items():
+        if group_cnt[qtype] == 0: continue
         print('{:.2f}'.format(acc*100.0/group_cnt[qtype]), end ='\t')
     print('')
     print('Acc: {:.2f}'.format(all_acc*100.0/all_cnt))
+
+
+
+def accuracy_metric_sub(sample_list, result, sub_ids):
+    
+    sub_ids = [int(id) for id in sub_ids]
+    subset = sample_list.iloc[sub_ids]
+
+    accuracy_metric(subset, result)
+
 
 
 def main(result_file, mode='val'):
@@ -62,12 +74,20 @@ def main(result_file, mode='val'):
     sample_list_file = osp.join(dataset_dir, data_set+'.csv')
     print('Evaluating {}'.format(result_file))
 
-    accuracy_metric(sample_list_file, result_file)
+    sample_list = load_file(sample_list_file)
+    result = load_file(result_file)
+    accuracy_metric(sample_list, result)
+
+    if mode == 'val':
+        hard_subset = osp.join(dataset_dir, 'atp-hard-ct4.txt')
+        sub_ids = load_file(hard_subset)
+        accuracy_metric_sub(sample_list, result, sub_ids)
+
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--mode",type=str, default='val', choices=['val','test'])
+    parser.add_argument("--mode", type=str, default='val', choices=['val','test'])
     parser.add_argument("--folder", type=str)
     args = parser.parse_args()
     res_dir = '../data/save_models/nextqa/'+args.folder

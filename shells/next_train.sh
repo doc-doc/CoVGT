@@ -1,12 +1,4 @@
 GPU=$1
-###
- # @Author: Xiao Junbin
- # @Date: 2022-11-24 09:02:59
- # @LastEditTime: 2022-11-24 09:33:28
- # @LastEditors: Xiao Junbin
- # @Description: 
- # @FilePath: /CoVGT/shells/next_train.sh
-### 
 CUDA_VISIBLE_DEVICES=$GPU python main.py --checkpoint_dir=nextqa \
 	--dataset=nextqa \
 	--mc=5 \
@@ -26,8 +18,9 @@ CUDA_VISIBLE_DEVICES=$GPU python main.py --checkpoint_dir=nextqa \
 	--ff_dim=1024 \
 	--dropout=0.3 \
 	--seed=666 \
-	--save_dir='../data/save_models/nextqa/CoVGT/' \
+	--save_dir='../data/save_models/nextqa/CoVGT_TyGT/' \
+	--pretrain_path=../data/save_models/nextqa/CoVGT_TyGT/best_model.pth
 	# --CM_PT=1
 	# --pretrain_path = '../data/save_models/webvid180K/e1.pth'
-	# --pretrain_path=../data/save_models/nextqa/VGT_B5/best_model.pth
+	
 	
