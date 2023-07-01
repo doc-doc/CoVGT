@@ -1,9 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from transformers import DistilBertTokenizer, DistilBertModel, DistilBertConfig
-from transformers import BertTokenizer, BertModel, BertConfig
-from transformers import RobertaModel, RobertaConfig, RobertaTokenizerFast
+# from transformers import DistilBertTokenizer, DistilBertModel, DistilBertConfig
 from transformers.activations import gelu
 from model.cmatt import CMAtten 
 
@@ -16,15 +14,17 @@ class Bert(nn.Module):
         # config = DistilBertConfig.from_pretrained("distilbert-base-uncased", output_hidden_states=True)
         # self.bert = DistilBertModel.from_pretrained("distilbert-base-uncased", config=config)
         if bert_tokenizer.pad_token_id == 0:
+            from transformers import BertTokenizer, BertModel, BertConfig
             config = BertConfig.from_pretrained("bert-base-uncased", output_hidden_states=True)
             self.bert = BertModel.from_pretrained("bert-base-uncased", config=config)
         elif bert_tokenizer.pad_token_id == 1:
+            from transformers import RobertaModel, RobertaConfig, RobertaTokenizerFast
             config = RobertaConfig.from_pretrained("roberta-base", output_hidden_states=True)
             self.bert = RobertaModel.from_pretrained("roberta-base", config=config)
         self.tokenizer = bert_tokenizer
         
-        for name, param in self.bert.named_parameters():
-            param.requires_grad = False
+        # for name, param in self.bert.named_parameters():
+        #     param.requires_grad = False
         
     def forward(self, tokens): #, seq_len, seg_feats, seg_num):
         attention_mask = (tokens != self.tokenizer.pad_token_id).float()

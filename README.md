@@ -1,39 +1,35 @@
-# Contrastive Video Question Answereing via Video Graph Transformer
+# Contrastive Video Question Answering via Video Graph Transformer
 <details open>
 <summary> <b>Abstract</b> </summary>
-We propose to perform video question answering (VideoQA) in a <b>Co</b>ntrastive manner via a <b>V</b>ideo <b>G</b>raph <b>T</b>ransformer model (CoVGT). CoVGT's uniqueness and superiority are three-fold: 
+This repo holds the code implementation for our paper accepted to IEEE T-PAMI'23. The work extends our priliminary publication at [ECCV'22](https://link.springer.com/chapter/10.1007/978-3-031-20059-5_3). The differences are mainly:
 
-* It proposes a dynamic graph transformer module which encodes video by explicitly capturing the visual objects, their relations and dynamics, for complex spatio-temporal reasoning. 
-* It designs separate video and text transformers for contrastive learning between the video and text to perform QA, instead of multi-modal transformer for answer classification. Fine-grained video-text communication is done by additional cross-modal interaction modules. 
-* It is optimized by the joint fully- and self-supervised contrastive objectives between the correct and incorrect answers, as well as the relevant and irrelevant questions respectively. 
-
-With superior video encoding and QA solution, we show that CoVGT can achieve much better performances than previous arts on video reasoning tasks. Its performances even surpass those models that are pretrained with millions of external data. We further show that CoVGT can also benefit from cross-modal pretraining, yet with orders of magnitude smaller data. The results demonstrate the effectiveness and superiority of CoVGT, and additionally reveal its potential for more data-efficient pretraining. We hope our success can advance VideoQA beyond coarse recognition/description towards fine-grained relation reasoning of video contents.
+* Optimize QA by fully- and self-supervised contrastive objectives between the correct and incorrect answers, as well as the relevant and irrelevant questions, respectively. 
+* Substitute BERT with a stronger language model (e.g., RoBERTa) for QA embedding.
+* Extended results on Causal-VidQA and STAR-QA.
 </details>
-
-This is an extended work (submitted to T-PAMI) of our priliminary publication at [ECCV'22](https://link.springer.com/chapter/10.1007/978-3-031-20059-5_3). This repo is based on [VGT](https://github.com/sail-sg/VGT). 
+The repo is based on [VGT](https://github.com/sail-sg/VGT). 
 
 <!-- ![teaser](misc/VGT.png) -->
 <div align="center">
-  <img width="50%" alt="VGT vs VGT without DGT" src="./misc/VGT.png">
+  <img width="50%" alt="Illustration of contrastive learning strategy" src="./misc/CoVGT.png">
 </div>
 
 ## Todo
-1. [x] Release feature of TGIF-QA + MSRVTT-QA [temporally access, email us if needed.].
+1. [x] 
 
 ## Environment
-Assume you have installed Anaconda, please do the following to setup the envs:
+Assume you have installed Anaconda3, cuda driver > 11.0, please do the following to setup the envs:
 ```
 >conda create -n videoqa python==3.8.8
 >conda activate videoqa
->git clone https://github.com/sail-sg/VGT.git
+>git clone https://github.com/doc-doc/CoVGT.git
 >pip install -r requirements.txt
 ```
 ## Preparation
-Please create a data folder outside this repo, so you have two folders in your workspace 'workspace/data/' and 'workspace/VGT/'. 
+Please create a data folder outside this repo, so you have two folders in your workspace 'workspace/data/' and 'workspace/CoVGT/'. 
 
 Below we use NExT-QA as an example to get you farmiliar with the code. 
-Please download the related video feature and QA annotations according to the links provided in the ```Results and Resources``` section. Extract QA annotations into ```workspace/data/datasets/nextqa/```, video features into ```workspace/data/feats/nextqa/``` and checkpoint files into ```workspace/data/save_models/nextqa/```.
-
+Please download the related video feature and QA annotations according to the links provided in the ```Results and Resources``` section. Download and save QA annotations into ```workspace/data/datasets/nextqa/```, video features into ```workspace/data/feats/nextqa/``` and checkpoint files into ```workspace/data/save_models/nextqa/```.
 
 ## Inference
 ```
@@ -41,7 +37,7 @@ Please download the related video feature and QA annotations according to the li
 ```
 ## Evaluation
 ```
-python eval_next.py --folder VGT --mode val
+python eval_next.py --folder CoVGT --mode test
 ``` 
 
 ## Results and Resources

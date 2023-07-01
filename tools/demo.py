@@ -85,6 +85,7 @@ def vis_det(feat_file, vname):
 def main():
     dataset = 'nextqa'
     feat_file = f'../../data/{dataset}/region_feat_n/acregion_8c20b_val.h5'
+    #the videos are decoded by 6 pfs
     frame_dir = '/storage/jbxiao/workspace/data/nextqa/frames/'
     vname = f'{frame_dir}/3376544720'
     vis_det(feat_file, vname)

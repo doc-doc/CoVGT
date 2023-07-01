@@ -22,7 +22,6 @@ class VideoQADataset(Dataset):
         amax_words=5,
         bert_tokenizer=None,
         a2id=None,
-        ivqa=False,
         max_feats=20,
         mc=0,
         bnum=10,
@@ -61,7 +60,7 @@ class VideoQADataset(Dataset):
         if self.mode not in ['val', 'test']:
             self.all_answers = set(self.data['answer'])
             self.all_questions = set(self.data['question'])
-            self.ans_group, self.qsn_group = group(self.data, gt=True)
+            self.ans_group, self.qsn_group = group(self.data, gt=False)
 
         if self.dset == 'star':
             self.vid_clips = load_file(osp.dirname(csv_path)+f'/clips_{self.mode}.json')
@@ -124,10 +123,6 @@ class VideoQADataset(Dataset):
         cnum = 8
         cids = list(range(cnum))
         pick_ids = cids
-        
-        # if self.mode == 'train':
-        #     rd.shuffle(pick_ids)
-            # pick_ids = sorted(rd.sample(cids, 8))
         
         if self.dset in ['frameqa', 'causalvid']:
             data_dir = '/raid/jbxiao/data/'
@@ -245,6 +240,7 @@ class VideoQADataset(Dataset):
             
         # print(question_txt)
         if self.mc == 0:
+            #open-ended QA
             question_embd = torch.tensor(
                 self.bert_tokenizer.encode(
                     question_txt,
@@ -265,20 +261,16 @@ class VideoQADataset(Dataset):
         seg_num = torch.LongTensor(self.mc)
 
         qsn_id , qsn_token_ids, qsn_seq_len = 0, 0, 0
-        type = 'null' if 'type' not in cur_sample  else cur_sample['type'] 
+        qtype = 'null' if 'type' not in cur_sample  else cur_sample['type'] 
         if self.lvq and self.mode not in ['val','test']:
-            # type = cur_sample['type']
-            if type == 'TP': type = 'TN'
             
-            # type = get_qsn_type(question_txt, type)
+            qtype = get_qsn_type(question_txt, qtype)
             neg_num = 5
-            if type not in self.qsn_group or len(self.qsn_group[type]) < neg_num-1:
+            if qtype not in self.qsn_group or len(self.qsn_group[qtype]) < neg_num-1:
                 valid_qsncans = self.all_questions #self.qsn_group[self.mtype]
             else:
-                valid_qsncans = self.qsn_group[type]
+                valid_qsncans = self.qsn_group[qtype]
 
-            # valid_qsncans = self.all_questions
-            # neg_num = 5
             cand_qsn = valid_qsncans - set(question_txt)
             qchoices = rd.sample(list(cand_qsn), neg_num-1)
             qchoices.append(question_txt)
@@ -314,15 +306,15 @@ class VideoQADataset(Dataset):
                 answer_id = choices.index(ans) if ans in choices else -1
 
                 if self.mode not in ['val', 'test'] and rd.random() < 0.3:
-                    type = cur_sample['type']
-                    if type == 'TP': type = 'TN'
+                    #add randomness to negative answers
+                    qtype = cur_sample['type']
+                    if qtype == 'TP': qtype = 'TN'
+                    qtype = get_qsn_type(question_txt, qtype) # argument 'qtype' is used to distinguish Question or Reason in CausalVid-QA
                     
-                    #type = get_qsn_type(question_txt, type) #type is used to distinguish Question or Reason in CausalVid-QA
-                    
-                    if type not in self.ans_group or len(self.ans_group[type]) < self.mc-1:
-                        valid_anscans = self.all_answers #self.ans_group[self.mtype]
+                    if qtype not in self.ans_group or len(self.ans_group[qtype]) < self.mc-1:
+                        valid_anscans = self.all_answers 
                     else:
-                        valid_anscans = self.ans_group[type]
+                        valid_anscans = self.ans_group[qtype]
                    
                     # valid_anscans = self.all_answers
                     
@@ -440,7 +432,6 @@ def get_videoqa_loaders(args, features, a2id, bert_tokenizer, test_mode):
             amax_words=args.amax_words,
             bert_tokenizer=bert_tokenizer,
             a2id=a2id,
-            ivqa=(args.dataset == "ivqa"),
             max_feats=args.max_feats,
             mc=args.mc,
             bnum =args.bnum,
@@ -463,7 +454,6 @@ def get_videoqa_loaders(args, features, a2id, bert_tokenizer, test_mode):
         amax_words=args.amax_words,
         bert_tokenizer=bert_tokenizer,
         a2id=a2id,
-        ivqa=(args.dataset == "ivqa"),
         max_feats=args.max_feats,
         mc=args.mc,
         bnum =args.bnum,
@@ -478,7 +468,7 @@ def get_videoqa_loaders(args, features, a2id, bert_tokenizer, test_mode):
             drop_last=True,
             collate_fn=videoqa_collate_fn,
         )
-        if args.dataset.split('/')[0] in ['tgifqa','tgifqa2', 'msrvttmc']:
+        if args.dataset.split('/')[0] in ['tgifqa','tgifqa2']:
             args.val_csv_path = args.test_csv_path
         val_dataset = VideoQADataset(
             csv_path=args.val_csv_path,
@@ -487,7 +477,6 @@ def get_videoqa_loaders(args, features, a2id, bert_tokenizer, test_mode):
             amax_words=args.amax_words,
             bert_tokenizer=bert_tokenizer,
             a2id=a2id,
-            ivqa=(args.dataset == "ivqa"),
             max_feats=args.max_feats,
             mc=args.mc,
             bnum =args.bnum,
