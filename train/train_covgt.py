@@ -8,7 +8,7 @@ import os.path as osp
 import json
 from fvcore.nn import FlopCountAnalysis
 
-def eval(model, data_loader, a2v, args, test=False):
+def eval(model, data_loader, a2v, args, test=False, tokenizer="RoBERTa"):
     model.eval()
     count = 0
     metrics, counts = collections.defaultdict(int), collections.defaultdict(int)

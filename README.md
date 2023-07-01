@@ -55,24 +55,24 @@ python eval_next.py --folder CoVGT --mode test
   </tr>
   <tr>
     <td>-</td>
-    <td>53.7</td>
-    <td>95.0</td>
+    <td>59.4</td>
+    <td>94.7</td>
     <td>97.6</td>
     <td>61.6</td>
-    <td>59.9</td>
-    <td>70.5</td>
-    <td>39.7</td>
+    <td>60.8</td>
+    <td>73.8</td>
+    <td>38.3</td>
   </tr>
   
   <tr>
     <td><a href="https://drive.google.com/file/d/1xvKFUHGrRz8gtv2jPE-2T4ug89fyX7zO/view?usp=sharing">WebVid0.18M</a></td>
-    <td><a href="https://drive.google.com/file/d/1N7nDGS8x3lKbmcADZ-qWBYCpPTEK6YEC/view?usp=sharing">55.7<a></td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>60.5</td>
-    <td>71.5</td>
-    <td>-</td>
+    <td><a href="https://drive.google.com/file/d/1N7nDGS8x3lKbmcADZ-qWBYCpPTEK6YEC/view?usp=sharing">59.7<a></td>
+    <td>-91.3</td>
+    <td>96.2</td>
+    <td>61.7</td>
+    <td>60.8</td>
+    <td>73.2</td>
+    <td>40.0</td>
   </tr>
   <tr>
    <td>-</td>

@@ -2,7 +2,7 @@ GPU=$1
 CUDA_VISIBLE_DEVICES=$GPU python main.py --checkpoint_dir=nextqa \
 	--dataset=nextqa \
 	--mc=5 \
-	--bnum=10 \
+	--bnum=5 \
 	--test=1 \
 	--qmax_words=0 \
 	--amax_words=38 \

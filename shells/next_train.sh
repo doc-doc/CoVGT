@@ -18,7 +18,7 @@ CUDA_VISIBLE_DEVICES=$GPU python main.py --checkpoint_dir=nextqa \
 	--ff_dim=1024 \
 	--dropout=0.3 \
 	--seed=666 \
-	--save_dir='../data/save_models/nextqa/CoVGT/' \
+	--save_dir='../data/save_models/nextqa/CoVGT1/' \
 	
 	
 	

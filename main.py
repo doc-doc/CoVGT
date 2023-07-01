@@ -109,14 +109,14 @@ def main(args):
             f"Set cosine schedule with {len(train_loader) * args.epochs} iterations"
         )
         if args.pretrain_path != "":
-            val_acc, results = eval(model, val_loader, a2v, args, test=False)  # zero-shot VideoQA
+            val_acc, results = eval(model, val_loader, a2v, args, test=False, tokenizer=tokenizer)  # zero-shot VideoQA
             save_path = osp.join(args.save_dir, 'val-res0.json')
             save_to (save_path, results)
         best_val_acc = 0 if args.pretrain_path == "" else val_acc
         best_epoch = 0
         for epoch in range(args.epochs):
-            train(model, train_loader, a2v, optimizer, criterion, scheduler, epoch, args, bert_tokenizer)
-            val_acc, results = eval(model, val_loader, a2v, args, test=False)
+            train(model, train_loader, a2v, optimizer, criterion, scheduler, epoch, args, tokenizer)
+            val_acc, results = eval(model, val_loader, a2v, args, test=False, tokenizer=tokenizer)
             if val_acc > best_val_acc:
                 best_val_acc = val_acc
                 best_epoch = epoch
@@ -132,7 +132,7 @@ def main(args):
         logging.info(f"Best val model at epoch {best_epoch + 1}")
     else:   
     # Evaluate on test set
-        test_acc, results = eval(model, test_loader, a2v, args, test=True)
+        test_acc, results = eval(model, test_loader, a2v, args, test=True, tokenizer=tokenizer)
         save_path = osp.join(args.save_dir, 'test-res.json')
         save_to(save_path, results)
 
