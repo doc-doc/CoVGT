@@ -1,11 +1,12 @@
 # Contrastive Video Question Answering via Video Graph Transformer
 <details open>
 <summary> <b>Abstract</b> </summary>
-This repo holds the code implementation for our paper accepted to IEEE T-PAMI'23. The work extends our priliminary publication at [ECCV'22](https://link.springer.com/chapter/10.1007/978-3-031-20059-5_3). The differences are mainly:
+This repo holds the code for our paper accepted to IEEE T-PAMI'23. The work extends our preliminary publication at [ECCV'22](https://link.springer.com/chapter/10.1007/978-3-031-20059-5_3). The differences are mainly:
 
-* Optimize QA by fully- and self-supervised contrastive objectives between the correct and incorrect answers, as well as the relevant and irrelevant questions, respectively. 
+* Optimize VGT by fully- and self-supervised contrastive objectives between the correct and incorrect answers, as well as the relevant and irrelevant questions, respectively. 
 * Substitute BERT with a stronger language model (e.g., RoBERTa) for QA embedding.
-* Extended results on Causal-VidQA and STAR-QA.
+* Extended results on Causal-VidQA and STAR-QA and more comprehensive ablation studies.
+
 </details>
 The repo is based on [VGT](https://github.com/sail-sg/VGT). 
 
@@ -18,7 +19,7 @@ The repo is based on [VGT](https://github.com/sail-sg/VGT).
 1. [x] 
 
 ## Environment
-Assume you have installed Anaconda3, cuda driver > 11.0, please do the following to setup the envs:
+Assume you have installed Anaconda3, cuda version > 11.0, please do the following to setup the envs:
 ```
 >conda create -n videoqa python==3.8.8
 >conda activate videoqa
@@ -120,6 +121,14 @@ It will train the model and save to the folder 'save_models/nextqa/'
 </div>
 
 ## Citation 
+```
+@article{xiao2023contrastive,
+  title={Contrastive Video Question Answering via Video Graph Transformer},
+  author={Xiao, Junbin and Zhou, Pan and Yao, Angela and Li, Yicong and Hong, Richang and Yan, Shuicheng and Chua, Tat-Seng},
+  journal={arXiv preprint arXiv:2302.13668},
+  year={2023}
+}
+```
 ```
 @inproceedings{xiao2022video,
   title={Video Graph Transformer for Video Question Answering},
