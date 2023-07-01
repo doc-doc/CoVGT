@@ -1,14 +1,15 @@
-# Contrastive Video Question Answering via Video Graph Transformer
+#Contrastive Video Question Answering via Video Graph Transformer
 <details open>
 <summary> <b>Abstract</b> </summary>
-This repo holds the code for our paper accepted to IEEE T-PAMI'23. The work extends our preliminary publication at [ECCV'22](https://link.springer.com/chapter/10.1007/978-3-031-20059-5_3). We highlight the following differences compared to the conference version:
+This repo holds the code for our paper accepted to IEEE T-PAMI'23. The work <a href="https://arxiv.org/abs/2302.13668">CoVGT</a> extends our preliminary publication at <a href="https://link.springer.com/chapter/10.1007/978-3-031-20059-5_3">ECCV'22</a>. We highlight the following differences compared to the conference version:
 
 * Optimize VGT by fully- and self-supervised contrastive objectives between the correct and incorrect answers, as well as the relevant and irrelevant questions, respectively. 
 * Substitute BERT with a stronger language model (e.g., RoBERTa) for QA embedding.
 * Extended results on Causal-VidQA and STAR-QA and more comprehensive ablation studies.
-
+  
+The code is based on <a href="https://github.com/sail-sg/VGT">VGT</a>.
 </details>
-The code is thus based on [VGT](https://github.com/sail-sg/VGT).
+
 
 <div align="center">
   <img width="50%" alt="Illustration of contrastive learning strategy" src="./misc/CoVGT.png">
