@@ -1,4 +1,4 @@
-#Contrastive Video Question Answering via Video Graph Transformer
+# Contrastive Video Question Answering via Video Graph Transformer
 <details open>
 <summary> <b>Abstract</b> </summary>
 This repo holds the code for our paper accepted to IEEE T-PAMI'23. The work <a href="https://arxiv.org/abs/2302.13668">CoVGT</a> extends our preliminary publication at <a href="https://link.springer.com/chapter/10.1007/978-3-031-20059-5_3">ECCV'22</a>. We highlight the following differences compared to the conference version:
