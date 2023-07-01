@@ -6,17 +6,15 @@ import random
 import os
 import os.path as osp
 import logging
-from transformers import BertTokenizer #DistilBertTokenizer
+
 from transformers import get_cosine_schedule_with_warmup
-from transformers import RobertaTokenizerFast,RobertaTokenizer
 from args import get_args
-# from model.VGT import VGT
 from model.CoVGT import VGT
 from loss import LogSoftmax
 from util import compute_a2v, load_model_by_key, save_to
 from dataloader.cvqa_loader import get_videoqa_loaders
 from train.train_covgt import train, eval
-# from train.train_videoqa import train, eval  #for bert
+
 
 
 def main(args):
@@ -32,29 +30,27 @@ def main(args):
     rootLogger.addHandler(fileHandler)
     logging.info(args)
 
-    # get answer embeddings
-    # bert_tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
-    # bert_tokenizer = DistilBertTokenizer.from_pretrained("distilbert-base-uncased")
+
     if args.lan == 'BERT':
-        bert_tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
-    else:
-        bert_tokenizer = RobertaTokenizerFast.from_pretrained("roberta-base")
-    
-    # special_tokens_dict = {'additional_special_tokens': ['[TSW]']}
-    # bert_tokenizer.add_special_tokens(special_tokens_dict)
+        from transformers import BertTokenizer
+        tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
+    elif args.lan == 'RoBERTa':
+        from transformers import RobertaTokenizerFast,RobertaTokenizer
+        tokenizer = RobertaTokenizerFast.from_pretrained("roberta-base")
+
     
     a2id, id2a, a2v = None, None, None
     if not args.mc:
         a2id, id2a, a2v = compute_a2v(
             vocab_path=args.vocab_path,
-            bert_tokenizer=bert_tokenizer,
+            bert_tokenizer=tokenizer,
             amax_words=args.amax_words,
         )
         logging.info(f"Length of Answer Vocabulary: {len(a2id)}")
 
     # Model
     model = VGT(
-        bert_tokenizer = bert_tokenizer,
+        tokenizer = tokenizer,
         feature_dim=args.feature_dim,
         word_dim=args.word_dim,
         N=args.n_layers,
@@ -64,9 +60,10 @@ def main(args):
         dropout=args.dropout,
         T=args.max_feats,
         Q=args.qmax_words,
-        vocab_size = bert_tokenizer.vocab_size,
+        vocab_size = tokenizer.vocab_size,
         baseline=args.baseline,
-        bnum=args.bnum
+        bnum=args.bnum,
+        lan=args.lan
     )
     model.cuda()
     logging.info("Using {} GPUs".format(torch.cuda.device_count()))
@@ -86,7 +83,7 @@ def main(args):
         train_loader,
         val_loader,
         test_loader,
-    ) = get_videoqa_loaders(args, args.features_path, a2id, bert_tokenizer, test_mode = args.test)
+    ) = get_videoqa_loaders(args, args.features_path, a2id, tokenizer, test_mode = args.test)
 
     if args.test:
         logging.info("number of test instances: {}".format(len(test_loader.dataset)))

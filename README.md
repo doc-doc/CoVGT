@@ -1,22 +1,21 @@
 # Contrastive Video Question Answering via Video Graph Transformer
 <details open>
 <summary> <b>Abstract</b> </summary>
-This repo holds the code for our paper accepted to IEEE T-PAMI'23. The work extends our preliminary publication at [ECCV'22](https://link.springer.com/chapter/10.1007/978-3-031-20059-5_3). The differences are mainly:
+This repo holds the code for our paper accepted to IEEE T-PAMI'23. The work extends our preliminary publication at [ECCV'22](https://link.springer.com/chapter/10.1007/978-3-031-20059-5_3). We highlight the following differences compared to the conference version:
 
 * Optimize VGT by fully- and self-supervised contrastive objectives between the correct and incorrect answers, as well as the relevant and irrelevant questions, respectively. 
 * Substitute BERT with a stronger language model (e.g., RoBERTa) for QA embedding.
 * Extended results on Causal-VidQA and STAR-QA and more comprehensive ablation studies.
 
 </details>
-The repo is based on [VGT](https://github.com/sail-sg/VGT). 
+The code is thus based on [VGT](https://github.com/sail-sg/VGT).
 
-<!-- ![teaser](misc/VGT.png) -->
 <div align="center">
   <img width="50%" alt="Illustration of contrastive learning strategy" src="./misc/CoVGT.png">
 </div>
 
 ## Todo
-1. [x] 
+1. [x] Release feature of other datasets. Please email the first author and specify the reason as the data is strictly for research purpose.
 
 ## Environment
 Assume you have installed Anaconda3, cuda version > 11.0, please do the following to setup the envs:
@@ -30,7 +29,7 @@ Assume you have installed Anaconda3, cuda version > 11.0, please do the followin
 Please create a data folder outside this repo, so you have two folders in your workspace 'workspace/data/' and 'workspace/CoVGT/'. 
 
 Below we use NExT-QA as an example to get you farmiliar with the code. 
-Please download the related video feature and QA annotations according to the links provided in the ```Results and Resources``` section. Download and save QA annotations into ```workspace/data/datasets/nextqa/```, video features into ```workspace/data/feats/nextqa/``` and checkpoint files into ```workspace/data/save_models/nextqa/```.
+Please download the related video feature and QA annotations according to the links provided in the ```Results and Resources``` section. Download and save QA annotations into ```workspace/data/datasets/nextqa/```, video features into ```workspace/data/nextqa/``` and checkpoint files into ```workspace/data/save_models/nextqa/```.
 
 ## Inference
 ```
@@ -139,8 +138,6 @@ It will train the model and save to the folder 'save_models/nextqa/'
   organization={Springer}
 }
 ```
-## Acknowledgements
-Some code is token from [VQA-T](https://github.com/antoyang/just-ask), and our video feature extraction is inspired by [HQGA](https://github.com/doc-doc/HQGA). Thanks the authors for their great work and code.
 ## Notes
 If you use any resources (feature & code & models) from this repo, please kindly cite our paper and acknowledge the source.
 ## License

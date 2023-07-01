@@ -31,10 +31,10 @@ def eval(model, data_loader, a2v, args, test=False):
            
             video_len = batch["video_len"]
             seq_len = batch["seq_len"]
-            # question_mask = (question > 0).float()
-            # answer_mask = (answer > 0).float()
-            question_mask = (question!=1).float() #RobBERETa
-            answer_mask = (answer!=1).float() #RobBERETa
+           
+            question_mask = (question!=tokenizer.pad_token_id).float() #RobBERETa
+            answer_mask = (answer!=tokenizer.pad_token_id).float() #RobBERETa
+
             video_mask = get_mask(video_len, video_o.size(1)).cuda()
             count += answer_id.size(0)
             video = (video_o, video_f)
@@ -123,15 +123,14 @@ def train(model, train_loader, a2v, optimizer, criterion, scheduler, epoch, args
         )
         
         video_len = batch["video_len"]
-        # question_mask = (question > 0).float().cuda()  #BERT
-        # answer_mask = (answer>0).float().cuda() #BERT
-        question_mask = (question != 1).float().cuda() #RobBERETa
-        answer_mask = (answer!=1).float().cuda() #RobBERETa
+        
+        question_mask = (question != tokenizer.pad_token_id).float().cuda() #RobBERETa
+        answer_mask = (answer!=tokenizer.pad_token_id).float().cuda() #RobBERETa
         video_mask = (
             get_mask(video_len, video_o.size(1)).cuda() if args.max_feats > 0 else None
         )
-        # qsn_mask = (qsn_token_ids > 0).float().cuda()
-        qsn_mask = (qsn_token_ids != 1).float().cuda()
+       
+        qsn_mask = (qsn_token_ids != tokenizer.pad_token_id).float().cuda()
         
         video = (video_o, video_f)
         N = answer_id.size(0)
@@ -145,7 +144,6 @@ def train(model, train_loader, a2v, optimizer, criterion, scheduler, epoch, args
                 video_mask=video_mask,
                 seq_len = seq_len
             )
-            # print(predicts.shape, answer_id)
         else:
             fusion_proj, answer_proj = model(
                 video,
@@ -157,9 +155,7 @@ def train(model, train_loader, a2v, optimizer, criterion, scheduler, epoch, args
                 seg_feats = seg_feats,
                 seg_num = seg_num
             )
-            
-            # predicts = fusion_proj.squeeze()
-            # print(fusion_proj.shape, answer_proj.shape)          
+                    
             fusion_proj = fusion_proj.unsqueeze(2)
             predicts = torch.bmm(answer_proj, fusion_proj).squeeze()
 

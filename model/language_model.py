@@ -1,34 +1,30 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-# from transformers import DistilBertTokenizer, DistilBertModel, DistilBertConfig
 from transformers.activations import gelu
 from model.cmatt import CMAtten 
 
 class Bert(nn.Module):
     """ Finetuned *BERT module """
 
-    def __init__(self, bert_tokenizer):
+    def __init__(self, tokenizer, lan='RoBERTa'):
         super(Bert, self).__init__()
-        
-        # config = DistilBertConfig.from_pretrained("distilbert-base-uncased", output_hidden_states=True)
-        # self.bert = DistilBertModel.from_pretrained("distilbert-base-uncased", config=config)
-        if bert_tokenizer.pad_token_id == 0:
+  
+        if lan == 'BERT':
             from transformers import BertTokenizer, BertModel, BertConfig
             config = BertConfig.from_pretrained("bert-base-uncased", output_hidden_states=True)
             self.bert = BertModel.from_pretrained("bert-base-uncased", config=config)
-        elif bert_tokenizer.pad_token_id == 1:
+        elif lan == 'RoBERTa':
             from transformers import RobertaModel, RobertaConfig, RobertaTokenizerFast
             config = RobertaConfig.from_pretrained("roberta-base", output_hidden_states=True)
             self.bert = RobertaModel.from_pretrained("roberta-base", config=config)
-        self.tokenizer = bert_tokenizer
+        self.tokenizer = tokenizer
         
         # for name, param in self.bert.named_parameters():
         #     param.requires_grad = False
         
-    def forward(self, tokens): #, seq_len, seg_feats, seg_num):
+    def forward(self, tokens):
         attention_mask = (tokens != self.tokenizer.pad_token_id).float()
-        # attention_mask = (tokens != 1).float() #for roberta
         outs = self.bert(tokens, attention_mask=attention_mask)
         embds = outs[0]
         return embds, outs[1][-2]
@@ -76,9 +72,9 @@ class AModel(nn.Module):
     Answer embedding module
     """
 
-    def __init__(self, bert_tokenizer, word_dim=768, out_dim=512):
+    def __init__(self, tokenizer, lan='RoBERTa', word_dim=768, out_dim=512):
         super(AModel, self).__init__()
-        self.bert = Bert(bert_tokenizer)
+        self.bert = Bert(tokenizer, lan=lan)
         self.linear_text = nn.Linear(word_dim, out_dim)
 
         # self.linear_text = FFN(word_dim, out_dim, out_dim)
@@ -102,34 +98,3 @@ class AModel(nn.Module):
         
         return answer_g, answer
 
-
-# class AModel(nn.Module):
-#     """
-#     Answer embedding module
-#     """
-
-#     def __init__(self, bert_tokenizer, word_dim=768, out_dim=512):
-#         super(AModel, self).__init__()
-#         self.bert = Bert(bert_tokenizer)
-#         self.linear_text = nn.Linear(word_dim, out_dim)
-
-#         # self.linear_text = FFN(word_dim, out_dim, out_dim)
-        
-#     def forward(self, answer, seq_len, seg_feats, seg_num):
-
-#         if len(answer.shape) == 3:
-#             #multi-choice
-#             bs, nans, lans = answer.shape
-#             answer = answer.view(bs * nans, lans)
-#             answer, hd_state = self.bert(answer, seq_len, seg_feats, seg_num)
-#             answer = self.linear_text(answer)
-#             answer_g = answer.mean(dim=1)
-#             # answer_g = answer[:, 0, :]
-#             answer_g = answer_g.view(bs, nans, -1)
-#         else:
-#             answer, hd_state = self.bert(answer)
-#             answer = self.linear_text(answer)
-#             answer_g = answer.mean(dim=1)
-#             # answer_g = answer[:, 0, :]
-        
-#         return answer_g, answer

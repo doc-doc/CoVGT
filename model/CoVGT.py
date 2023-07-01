@@ -389,7 +389,7 @@ class POSEmbeddings(nn.Module):
 class VGT(nn.Module):
     def __init__(
         self,
-        bert_tokenizer,
+        tokenizer,
         feature_dim=1024,
         word_dim=768,
         N=2,
@@ -403,6 +403,7 @@ class VGT(nn.Module):
         baseline="",
         n_negs=1,
         bnum=10,
+        lan='RoBERTa',
     ):
         """
         :param feature_dim: dimension of the input video features
@@ -434,7 +435,6 @@ class VGT(nn.Module):
         self.norm_video = nn.LayerNorm(d_model, eps=1e-12)
 
         #####################clip position###################
-        # self.position_v = Embeddings(d_model, Q, T//4, dropout, True, d_pos)
         self.position_v = Embeddings(d_model, 20, 8, dropout, True, d_pos)
         #####################hie position###################
 
@@ -469,7 +469,7 @@ class VGT(nn.Module):
         self.answer_embeddings = None
 
         # answer modules
-        self.amodel = AModel(bert_tokenizer, out_dim=d_model)
+        self.amodel = AModel(tokenizer, lan=lan, out_dim=d_model)
 
         self.merge_fr = nn.Sequential(
             nn.Linear(d_model*2, d_model),

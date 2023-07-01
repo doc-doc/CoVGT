@@ -20,7 +20,7 @@ class VideoQADataset(Dataset):
         features,
         qmax_words=20,
         amax_words=5,
-        bert_tokenizer=None,
+        tokenizer=None,
         a2id=None,
         max_feats=20,
         mc=0,
@@ -32,9 +32,8 @@ class VideoQADataset(Dataset):
         :param features: dictionary mapping video_id to torch tensor of features
         :param qmax_words: maximum number of words for a question
         :param amax_words: maximum number of words for an answer
-        :param bert_tokenizer: BERT tokenizer
+        :param tokenizer: tokenizer
         :param a2id: answer to index mapping
-        :param ivqa: whether to use iVQA or not
         :param max_feats: maximum frames to sample from a video
         """
         self.csv_path = csv_path
@@ -48,8 +47,7 @@ class VideoQADataset(Dataset):
         self.qmax_words = qmax_words
         self.amax_words = amax_words
         self.a2id = a2id
-        self.bert_tokenizer = bert_tokenizer
-        self.ivqa = ivqa
+        self.tokenizer = tokenizer
         self.max_feats = max_feats
         self.mc = mc
         self.lvq = cl_loss
@@ -278,7 +276,7 @@ class VideoQADataset(Dataset):
             qsn_id = qchoices.index(question_txt)
             qsn_token_ids, qsn_tokens = tokenize(
                     qchoices,
-                    self.bert_tokenizer,
+                    self.tokenizer,
                     add_special_tokens=True,
                     max_length=self.qmax_words,
                     dynamic_padding=False,
@@ -327,7 +325,7 @@ class VideoQADataset(Dataset):
                    
                     # print(question_txt, choices, ans)
             
-                answer_txts = [question_txt+' </s> '+opt for opt in choices]
+                answer_txts = [question_txt+f' {self.tokenizer.sep_token} '+opt for opt in choices]
                 # print(answer_txts)
                 # if self.dset == 'causalvid':
                     # if vid_id in self.txt_obj:
@@ -343,7 +341,7 @@ class VideoQADataset(Dataset):
             try:
                 ans_token_ids, answer_tokens = tokenize(
                     answer_txts,
-                    self.bert_tokenizer,
+                    self.tokenizer,
                     add_special_tokens=True,
                     max_length=self.amax_words,
                     dynamic_padding=False,
@@ -422,7 +420,7 @@ def videoqa_collate_fn(batch):
     return default_collate(batch)
 
 
-def get_videoqa_loaders(args, features, a2id, bert_tokenizer, test_mode):
+def get_videoqa_loaders(args, features, a2id, tokenizer, test_mode):
     
     if test_mode:
         test_dataset = VideoQADataset(
@@ -430,7 +428,7 @@ def get_videoqa_loaders(args, features, a2id, bert_tokenizer, test_mode):
             features=features,
             qmax_words=args.qmax_words,
             amax_words=args.amax_words,
-            bert_tokenizer=bert_tokenizer,
+            tokenizer=tokenizer,
             a2id=a2id,
             max_feats=args.max_feats,
             mc=args.mc,
@@ -452,7 +450,7 @@ def get_videoqa_loaders(args, features, a2id, bert_tokenizer, test_mode):
         features=features,
         qmax_words=args.qmax_words,
         amax_words=args.amax_words,
-        bert_tokenizer=bert_tokenizer,
+        tokenizer=tokenizer,
         a2id=a2id,
         max_feats=args.max_feats,
         mc=args.mc,
@@ -475,7 +473,7 @@ def get_videoqa_loaders(args, features, a2id, bert_tokenizer, test_mode):
             features=features,
             qmax_words=args.qmax_words,
             amax_words=args.amax_words,
-            bert_tokenizer=bert_tokenizer,
+            tokenizer=tokenizer,
             a2id=a2id,
             max_feats=args.max_feats,
             mc=args.mc,
