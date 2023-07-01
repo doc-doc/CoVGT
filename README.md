@@ -67,10 +67,10 @@ python eval_next.py --folder CoVGT --mode test
   <tr>
     <td><a href="https://drive.google.com/file/d/1xvKFUHGrRz8gtv2jPE-2T4ug89fyX7zO/view?usp=sharing">WebVid0.18M</a></td>
     <td><a href="https://drive.google.com/file/d/1N7nDGS8x3lKbmcADZ-qWBYCpPTEK6YEC/view?usp=sharing">59.7<a></td>
-    <td>-91.3</td>
+    <td>91.3</td>
     <td>96.2</td>
     <td>61.7</td>
-    <td>60.8</td>
+    <td>61.0</td>
     <td>73.2</td>
     <td>40.0</td>
   </tr>
