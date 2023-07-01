@@ -47,6 +47,7 @@ python eval_next.py --folder CoVGT --mode test
   <tr>
     <th>Cross-Modal Pretrain</th>
     <th><a href="https://github.com/doc-doc/NExT-QA", target="_blank">NExT-QA</a></th>
+    <th><a href="https://github.com/bcmi/Causal-VidQA", target="_blank">Causal-VidQA</a></th>
     <th><a href="https://github.com/YunseokJANG/tgif-qa", target="_blank">TGIF-QA</a> (Action)</th>
     <th>TGIF-QA (Trans)</th>
     <th>TGIF-QA (FrameQA)</th>
@@ -57,6 +58,7 @@ python eval_next.py --folder CoVGT --mode test
   <tr>
     <td>-</td>
     <td>59.4</td>
+    <td>59.1</td>
     <td>94.7</td>
     <td>97.6</td>
     <td>61.6</td>
@@ -68,6 +70,7 @@ python eval_next.py --folder CoVGT --mode test
   <tr>
     <td><a href="https://drive.google.com/file/d/1xvKFUHGrRz8gtv2jPE-2T4ug89fyX7zO/view?usp=sharing">WebVid0.18M</a></td>
     <td><a href="https://drive.google.com/file/d/1N7nDGS8x3lKbmcADZ-qWBYCpPTEK6YEC/view?usp=sharing">59.7<a></td>
+    <td>60.8</td>
     <td>91.3</td>
     <td>96.2</td>
     <td>61.7</td>
@@ -78,6 +81,7 @@ python eval_next.py --folder CoVGT --mode test
   <tr>
    <td>-</td>
     <td><a href="https://drive.google.com/file/d/19TRupHHAP9m0eE9n3b2HMcliiJE9VGcN/view?usp=sharing">feats</a></td>
+    <td>feats</td>
     <td>feats</td>
     <td><a href="https://drive.google.com/file/d/1dmt22WEjzfa8m7yY4WjFZIWq8MIpYAMb/view?usp=sharing">feats</a></td>
     <td><a href="https://drive.google.com/file/d/1XqqXv2y1C9LArB_iF_idTP0ollqxcPps/view?usp=sharing">feats</a></td>
@@ -94,10 +98,12 @@ python eval_next.py --folder CoVGT --mode test
     <td>videos</td>
     <td>videos</td>
     <td>videos</td>
+    <td>videos</td>
   </tr>
   <tr>
     <td>-</td>
     <td><a href="https://drive.google.com/file/d/1DS1nof3lhq5QiWRrvOTiN436_ca4EN2Y/view?usp=sharing">Q&A</a></td>
+     <td>Q&A</td>
     <td><a href="https://drive.google.com/file/d/1CE04mDGiQ2EcG5zbQAgERi-EukiIPKSw/view?usp=sharing">Q&A</a></td>
     <td>Q&A</td>
     <td>Q&A</td>
