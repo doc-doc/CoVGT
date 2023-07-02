@@ -132,7 +132,7 @@ It will train the model and save to the folder 'save_models/nextqa/'. You will g
   <img width="100%" alt="VGT vs VGT without DGT" src="./misc/CoVGT-res.png">
 </div>
 
-## Citation 
+## Citations 
 ```
 @article{xiao2023contrastive,
   title={Contrastive Video Question Answering via Video Graph Transformer},

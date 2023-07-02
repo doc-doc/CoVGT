@@ -35,7 +35,6 @@ def tokenize(
     tokens = ''
     return torch.tensor(token_ids, dtype=torch.long), tokens
 
-
 def transform_bb(roi_bbox, width, height):
     dshape = list(roi_bbox.shape)
     tmp_bbox = roi_bbox.reshape([-1, 4])
