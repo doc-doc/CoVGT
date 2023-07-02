@@ -1,4 +1,4 @@
-# Contrastive Video Question Answering via Video Graph Transformer
+# Contrastive Video Question Answering via Video Graph Transformer (IEEE T-PAMI'23)
 <details open>
 <summary> <b>Abstract</b> </summary>
 This repo holds the code for our paper <a href="https://arxiv.org/abs/2302.13668">CoVGT</a> accepted to IEEE T-PAMI'23. The work extends our preliminary publication at <a href="https://link.springer.com/chapter/10.1007/978-3-031-20059-5_3">ECCV'22</a>. We highlight the following differences compared to the conference version:
@@ -16,7 +16,7 @@ The code is based on <a href="https://github.com/sail-sg/VGT">VGT</a>.
 </div>
 
 ## Todo
-1. [x] Release feature of other datasets. Please email the first author and specify the reason as the data is strictly for research purpose.
+1. [ ] Release feature of other datasets. Please email the first author and specify the reason as the data is strictly for research purpose.
 
 ## Environment
 Assume you have installed Anaconda3, cuda version > 11.0 with gpu memory > 24G, please do the following to setup the envs:
@@ -38,7 +38,7 @@ Please download the related video feature and QA annotations according to the li
 ```
 ## Evaluation
 ```
-python eval_next.py --folder CoVGT --mode test
+python eval_next.py --folder CoVGT_FTCoWV --mode test
 ``` 
 
 ## Results and Resources
@@ -125,7 +125,7 @@ We have provided all the scripts in the folder 'shells', you can start your trai
 ```
 ./shell/nextqa_train.sh 0
 ```
-It will train the model and save to the folder 'save_models/nextqa/'. You will get results of ~60.1% and ~59.4% on the val and test set respectively.
+It will train the model and save to the folder 'save_models/nextqa/CoVGT/'. You will get results around 60.1% and 59.4% on the val and test set respectively.
 
 ### Result Visualization (NExT-QA)
 <div align="center">
