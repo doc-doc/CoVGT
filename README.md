@@ -152,6 +152,6 @@ It will train the model and save to the folder 'save_models/nextqa/CoVGT/'. You 
 }
 ```
 ## Notes
-If you use any resources (feature & code & models) from this repo, please kindly cite our paper and acknowledge the source.
+If you use any resources from this repo, please kindly cite our paper and acknowledge the source.
 ## License
 This repository is released under the Apache 2.0 license as found in the [LICENSE](LICENSE) file.
