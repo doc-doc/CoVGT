@@ -70,6 +70,7 @@ python eval_next.py --folder CoVGT --mode test
   <tr>
     <td><a href="https://drive.google.com/file/d/18KUgq22hLRmRfCgfMf_TXRgjCt3NE8vO/view?usp=sharing">WebVid0.18M</a></td>
     <td><a href="https://drive.google.com/file/d/1Udhm0BdD_YgcrLZ7RwMXwkKGlW-vHo7H/view?usp=sharing">59.7<a></td>
+    <td>60.8</td>
     <td>91.3</td>
     <td>96.2</td>
     <td>61.7</td>
@@ -80,6 +81,7 @@ python eval_next.py --folder CoVGT --mode test
   <tr>
    <td>-</td>
     <td><a href="https://drive.google.com/file/d/19TRupHHAP9m0eE9n3b2HMcliiJE9VGcN/view?usp=sharing">feats</a></td>
+    <td>feats</td>
     <td>feats</td>
     <td>feats</td>
     <td>feats</td>
