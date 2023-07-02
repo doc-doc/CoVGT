@@ -1,7 +1,7 @@
 import os
 
 # Fill the paths
-DEFAULT_DATASET_DIR = "../data/datasets/"  # where the datasets folders are
+DEFAULT_DATASET_DIR = "./datasets/"  # where the datasets folders are
 DEFAULT_CKPT_DIR = "../data/models/"   # where the training checkpoints and logs will be saved
 DEFAULT_MODEL_DIR = "../data/pretrain_models/"  # where the pretrained models are
 SSD_DIR = "../data/feats/"  # where the HowTo100M S3D features are
