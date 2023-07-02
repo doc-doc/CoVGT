@@ -8,12 +8,10 @@ from model.language_model import Bert, AModel
 import copy
 from transformers.modeling_outputs import BaseModelOutput
 from transformers import BertConfig
-# from transformers import DistilBertConfig
 from transformers import RobertaConfig
 from model.graph import Graph
 from util import get_mask
 import torch.nn.functional as F
-# from model.biatt import BiAttn
 from model.cmatt import CMAtten
 import h5py
 import os.path as osp
