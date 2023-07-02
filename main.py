@@ -133,7 +133,7 @@ def main(args):
     else:   
     # Evaluate on test set
         test_acc, results = eval(model, test_loader, a2v, args, test=True, tokenizer=tokenizer)
-        save_path = osp.join(args.save_dir, 'test-res.json')
+        save_path = osp.join(args.save_dir, 'val-res.json')
         save_to(save_path, results)
 
 
