@@ -2,7 +2,7 @@ GPU=$1
 CUDA_VISIBLE_DEVICES=$GPU python main.py --checkpoint_dir=nextqa \
 	--dataset=nextqa \
 	--mc=5 \
-	--bnum=5 \
+	--bnum=10 \
 	--test=1 \
 	--qmax_words=0 \
 	--amax_words=38 \
@@ -16,6 +16,6 @@ CUDA_VISIBLE_DEVICES=$GPU python main.py --checkpoint_dir=nextqa \
 	--ff_dim=1024 \
 	--dropout=0.3 \
 	--lan="RoBERTa" \
-	--save_dir='../data/save_models/nextqa/CoVGT/' \
-	--pretrain_path=../data/save_models/nextqa/CoVGT/best_model.pth \
+	--save_dir='../data/save_models/nextqa/CoVGT_FTCoWV/' \
+	--pretrain_path='../data/save_models/nextqa/CoVGT_FTCoWV/best_model.pth' \
 	#--CM_PT=1

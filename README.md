@@ -3,7 +3,7 @@
 <summary> <b>Abstract</b> </summary>
 This repo holds the code for our paper accepted to IEEE T-PAMI'23. The work <a href="https://arxiv.org/abs/2302.13668">CoVGT</a> extends our preliminary publication at <a href="https://link.springer.com/chapter/10.1007/978-3-031-20059-5_3">ECCV'22</a>. We highlight the following differences compared to the conference version:
 
-* Optimize VGT by fully- and self-supervised contrastive objectives between the correct and incorrect answers, as well as the relevant and irrelevant questions, respectively. 
+* A supervised and self-supervised contrastive objectives between the correct and incorrect answers, as well as the relevant and irrelevant questions, respectively. 
 * Substitute BERT with a stronger language model (e.g., RoBERTa) for QA embedding.
 * Extended results on Causal-VidQA and STAR-QA and more comprehensive ablation studies.
   
@@ -42,7 +42,7 @@ python eval_next.py --folder CoVGT --mode test
 ``` 
 
 ## Results and Resources
-**<p align="center">Table 1. VideoQA Accuracy (%).</p>**
+**<p align="center">Table 1. VideoQA Accuracy (%) on Test Set.</p>**
 <table>
   <tr>
     <th>Cross-Modal Pretrain</th>

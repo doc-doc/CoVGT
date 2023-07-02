@@ -7,7 +7,7 @@ import math
 from model.language_model import Bert, AModel
 import copy
 from transformers.modeling_outputs import BaseModelOutput
-# from transformers import BertConfig
+from transformers import BertConfig
 # from transformers import DistilBertConfig
 from transformers import RobertaConfig
 from model.graph import Graph
@@ -438,15 +438,21 @@ class VGT(nn.Module):
         self.position_v = Embeddings(d_model, 20, 8, dropout, True, d_pos)
         #####################hie position###################
 
-        self.config = RobertaConfig.from_pretrained(
-            "roberta-base",
+        if lan == 'BERT':
+            pt_config_name = 'bert-base-uncased'
+            config = BertConfig
+        elif lan == 'RoBERTa':
+            pt_config_name = 'roberta-base'
+            config = RobertaConfig
+
+        self.config = config.from_pretrained(
+            pt_config_name,
             num_hidden_layers=N,
             hidden_size=d_model,
             attention_probs_dropout_prob=dropout,
             intermediate_size=d_ff,
             num_attention_heads=h,
         )
-
 
         self.mmt = Transformer(self.config)
         self.vqproj = nn.Sequential(
@@ -484,8 +490,8 @@ class VGT(nn.Module):
         self.gnn = Graph(dim_in=d_model, dim_hidden=d_model//2,
                          dim_out=d_model, num_layers=2, dropout=dropout)
 
-        config_gt = RobertaConfig.from_pretrained(
-            "roberta-base",
+        config_gt = config.from_pretrained(
+            pt_config_name,
             num_hidden_layers=N,
             hidden_size=bnum*bnum,
             dropout=dropout,
@@ -498,7 +504,7 @@ class VGT(nn.Module):
         self.ntrans = Transformer(self.config)
         # # # # ###############cross-mode interaction###########
         self.bidirec_att = CMAtten()
-        # self.final_proj = nn.Linear(d_model, 1) # 1 for multi-choice QA
+        # self.final_proj = nn.Linear(d_model, 1) # classification layer
         
         
     def _init_weights(self, module):
