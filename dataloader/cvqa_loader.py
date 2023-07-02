@@ -424,7 +424,7 @@ def get_videoqa_loaders(args, features, a2id, tokenizer, test_mode):
     
     if test_mode:
         test_dataset = VideoQADataset(
-            csv_path=args.test_csv_path,
+            csv_path=args.val_csv_path,
             features=features,
             qmax_words=args.qmax_words,
             amax_words=args.amax_words,
