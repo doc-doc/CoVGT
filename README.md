@@ -40,7 +40,7 @@ Please download the related video feature and QA annotations according to the li
 ```
 python eval_next.py --folder CoVGT_FTCoWV --mode test
 ``` 
-
+We find on some machines, the accuracy could be 59.9% (slightly higher than 59.7%).
 ## Results and Resources
 **<p align="center">Table 1. VideoQA Accuracy (%) on Test Set.</p>**
 <table>
@@ -125,7 +125,7 @@ We have provided all the scripts in the folder 'shells', you can start your trai
 ```
 ./shell/nextqa_train.sh 0
 ```
-It will train the model and save to the folder 'save_models/nextqa/CoVGT/'. You will get results around 60.1% and 59.4% on the val and test set respectively.
+It will train the model and save to the folder 'save_models/nextqa/CoVGT/'. You will get results around 60.1% and 59.4% on the val and test set respectively. The results could be slightly different from our reported results because of pseudo random initialization of pytorch modules (we clean some useless modules).
 
 ### Result Visualization (NExT-QA)
 <div align="center">
