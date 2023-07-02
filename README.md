@@ -19,7 +19,7 @@ The code is based on <a href="https://github.com/sail-sg/VGT">VGT</a>.
 1. [x] Release feature of other datasets. Please email the first author and specify the reason as the data is strictly for research purpose.
 
 ## Environment
-Assume you have installed Anaconda3, cuda version > 11.0, please do the following to setup the envs:
+Assume you have installed Anaconda3, cuda version > 11.0 with gpu memory > 24G, please do the following to setup the envs:
 ```
 >conda create -n videoqa python==3.8.8
 >conda activate videoqa
@@ -66,8 +66,8 @@ python eval_next.py --folder CoVGT --mode test
   </tr>
   
   <tr>
-    <td><a href="https://drive.google.com/file/d/1xvKFUHGrRz8gtv2jPE-2T4ug89fyX7zO/view?usp=sharing">WebVid0.18M</a></td>
-    <td><a href="https://drive.google.com/file/d/1N7nDGS8x3lKbmcADZ-qWBYCpPTEK6YEC/view?usp=sharing">59.7<a></td>
+    <td><a href="https://drive.google.com/file/d/18KUgq22hLRmRfCgfMf_TXRgjCt3NE8vO/view?usp=sharing">WebVid0.18M</a></td>
+    <td><a href="https://drive.google.com/file/d/1Udhm0BdD_YgcrLZ7RwMXwkKGlW-vHo7H/view?usp=sharing">59.7<a></td>
     <td>91.3</td>
     <td>96.2</td>
     <td>61.7</td>
@@ -79,8 +79,8 @@ python eval_next.py --folder CoVGT --mode test
    <td>-</td>
     <td><a href="https://drive.google.com/file/d/19TRupHHAP9m0eE9n3b2HMcliiJE9VGcN/view?usp=sharing">feats</a></td>
     <td>feats</td>
-    <td><a href="https://drive.google.com/file/d/1dmt22WEjzfa8m7yY4WjFZIWq8MIpYAMb/view?usp=sharing">feats</a></td>
-    <td><a href="https://drive.google.com/file/d/1XqqXv2y1C9LArB_iF_idTP0ollqxcPps/view?usp=sharing">feats</a></td>
+    <td>feats</td>
+    <td>feats</td>
     <td>feats</td>
     <td>feats</td>
     <td><a href="https://drive.google.com/file/d/14efO-eeYFSKKPhhG3AUqJLOONm80xDo8/view?usp=sharing">feats</a></td>
@@ -113,11 +113,11 @@ We have provided all the scripts in the folder 'shells', you can start your trai
 ```
 ./shell/nextqa_train.sh 0
 ```
-It will train the model and save to the folder 'save_models/nextqa/'
+It will train the model and save to the folder 'save_models/nextqa/'. You will get results of ~60.1% and ~59.4% on the val and test set respectively.
 
 ### Result Visualization (NExT-QA)
 <div align="center">
-  <img width="100%" alt="VGT vs VGT without DGT" src="./misc/res.png">
+  <img width="100%" alt="VGT vs VGT without DGT" src="./misc/CoVGT-res.png">
 </div>
 
 ## Citation 
