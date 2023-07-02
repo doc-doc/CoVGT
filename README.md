@@ -1,7 +1,7 @@
 # Contrastive Video Question Answering via Video Graph Transformer
 <details open>
 <summary> <b>Abstract</b> </summary>
-This repo holds the code for our paper accepted to IEEE T-PAMI'23. The work <a href="https://arxiv.org/abs/2302.13668">CoVGT</a> extends our preliminary publication at <a href="https://link.springer.com/chapter/10.1007/978-3-031-20059-5_3">ECCV'22</a>. We highlight the following differences compared to the conference version:
+This repo holds the code for our paper <a href="https://arxiv.org/abs/2302.13668">CoVGT</a> accepted to IEEE T-PAMI'23. The work extends our preliminary publication at <a href="https://link.springer.com/chapter/10.1007/978-3-031-20059-5_3">ECCV'22</a>. We highlight the following differences compared to the conference version:
 
 * A supervised and self-supervised contrastive objectives between the correct and incorrect answers, as well as the relevant and irrelevant questions, respectively. 
 * Substitute BERT with a stronger language model (e.g., RoBERTa) for QA embedding.
@@ -95,7 +95,7 @@ python eval_next.py --folder CoVGT --mode test
   </tr>
   <tr>
     <td>-</td>
-    <td><a href="https://xdshang.github.io/docs/vidor.html">train&val</a>+<a href="https://drive.google.com/file/d/12WCsaOOlDQNaXILSxvL-hIM3TxV15dV3/view?usp=sharing">test</a></td>
+    <td><a href="https://drive.google.com/file/d/1jTcRCrVHS66ckOUfWRb-rXdzJ52XAWQH/view?usp=sharing">videos</a></td>
     <td>videos</td>
     <td>videos</td>
     <td>videos</td>
