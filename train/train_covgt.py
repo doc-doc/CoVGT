@@ -6,7 +6,7 @@ import collections
 from util import compute_aggreeings, AverageMeter, get_mask, mask_tokens
 import os.path as osp
 import json
-from fvcore.nn import FlopCountAnalysis
+#from fvcore.nn import FlopCountAnalysis
 
 def eval(model, data_loader, a2v, args, test=False, tokenizer="RoBERTa"):
     model.eval()
