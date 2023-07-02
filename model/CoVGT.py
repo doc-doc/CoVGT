@@ -500,11 +500,11 @@ class VGT(nn.Module):
 
         self.etrans = Transformer(config_gt)
         self.ntrans = Transformer(self.config)
-        # # # # ###############cross-mode interaction###########
+        ###################cross-mode interaction###########
         self.bidirec_att = CMAtten()
         # self.final_proj = nn.Linear(d_model, 1) # classification layer
         
-        
+
     def _init_weights(self, module):
         """Initialize the weights."""
         if isinstance(module, nn.Embedding):
