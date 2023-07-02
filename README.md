@@ -21,7 +21,7 @@ The code is based on <a href="https://github.com/sail-sg/VGT">VGT</a>.
 ## Environment
 Assume you have installed Anaconda3, cuda version > 11.0 with gpu memory > 24G, please do the following to setup the envs:
 ```
->conda create -n videoqa python==3.8.8
+>conda create -n videoqa python==3.10.9
 >conda activate videoqa
 >git clone https://github.com/doc-doc/CoVGT.git
 >pip install -r requirements.txt
