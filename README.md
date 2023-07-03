@@ -108,7 +108,7 @@ We find on some machines, the accuracy could be 59.9% (slightly higher than 59.7
   <tr>
     <td>-</td>
     <td><a href="https://github.com/doc-doc/CoVGT/tree/main/datasets/nextqa">Q&A</a></td>
-    <td>Q&A</td>
+    <td><a href="https://drive.google.com/file/d/1XLPiVY72GV0NYXGNR32wNQQMRe1J-33E/view?usp=sharing">Q&A</a></td>
     <td>Q&A</td>
     <td><a href="https://drive.google.com/file/d/1CE04mDGiQ2EcG5zbQAgERi-EukiIPKSw/view?usp=sharing">Q&A</a></td>
     <td>Q&A</td>
