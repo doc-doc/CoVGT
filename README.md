@@ -1,4 +1,4 @@
-# Contrastive Video Question Answering via Video Graph Transformer (IEEE T-PAMI'23)
+# Contrastive Video Question Answering via Video Graph Transformer
 <details open>
 <summary> <b>Abstract</b> </summary>
 This repo holds the code for our paper <a href="https://arxiv.org/abs/2302.13668">CoVGT</a> accepted to IEEE T-PAMI'23. The work extends our preliminary publication at <a href="https://link.springer.com/chapter/10.1007/978-3-031-20059-5_3">ECCV'22</a>. We highlight the following differences compared to the conference version:
@@ -40,7 +40,7 @@ Please download the related video feature and QA annotations according to the li
 ```
 python eval_next.py --folder CoVGT_FTCoWV --mode test
 ``` 
-We find on some machines, the accuracy could be 59.9% (slightly higher than 59.7%).
+
 ## Results and Resources
 **<p align="center">Table 1. VideoQA Accuracy (%) on Test Set.</p>**
 <table>
