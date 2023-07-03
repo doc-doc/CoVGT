@@ -125,7 +125,7 @@ We have provided all the scripts in the folder 'shells', you can start your trai
 ```
 ./shell/nextqa_train.sh 0
 ```
-It will train the model and save to the folder 'save_models/nextqa/CoVGT/'. You will get results around 60.1% and 59.4% on the val and test set respectively. The results could be slightly different from our reported ones because of the pseudo-random initialization of pytorch modules.
+It will train the model and save to the folder 'save_models/nextqa/CoVGT/'. You will get results around 60.1% and 59.4% on the val and test set respectively.
 
 ### Result Visualization (NExT-QA)
 <div align="center">
