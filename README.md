@@ -135,11 +135,14 @@ It will train the model and save to the folder 'save_models/nextqa/CoVGT/'. You 
 ## Citations 
 ```
 @article{xiao2023contrastive,
-  title={Contrastive Video Question Answering via Video Graph Transformer},
   author={Xiao, Junbin and Zhou, Pan and Yao, Angela and Li, Yicong and Hong, Richang and Yan, Shuicheng and Chua, Tat-Seng},
-  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
-  year={2023}
-}
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence}, 
+  title={Contrastive Video Question Answering via Video Graph Transformer}, 
+  year={2023},
+  volume={},
+  number={},
+  pages={1-14},
+  doi={10.1109/TPAMI.2023.3292266}}
 ```
 ```
 @inproceedings{xiao2022video,
