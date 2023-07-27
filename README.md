@@ -19,18 +19,19 @@ The code is based on <a href="https://github.com/sail-sg/VGT">VGT</a>.
 1. [ ] Release feature of other datasets. Please email the first author and specify the reason as the data is strictly for research purpose.
 
 ## Environment
-Assume you have installed Anaconda3, cuda version > 11.0 with gpu memory > 24G, please do the following to setup the envs:
+Assume you have installed Anaconda3, cuda version > 11.0 with gpu memory >= 24G, please do the following to setup the envs:
 ```
->conda create -n videoqa python==3.10.9
+>conda create -n videoqa python==3.8.16
 >conda activate videoqa
 >git clone https://github.com/doc-doc/CoVGT.git
 >pip install -r requirements.txt
+>conda install pytorch==1.8.1 torchvision==0.9.1 cudatoolkit=11.1 -c pytorch -c nvidia
 ```
 ## Preparation
 Please create a data folder outside this repo, so you have two folders in your workspace 'workspace/data/' and 'workspace/CoVGT/'. 
 
 Below we use NExT-QA as an example to get you farmiliar with the code. 
-Please download the related video feature and QA annotations according to the links provided in the ```Results and Resources``` section. Download and save QA annotations into ```workspace/CoVGT/datasets/nextqa/``` (already done), video features into ```workspace/data/nextqa/``` and checkpoint files into ```workspace/data/save_models/nextqa/```. Change default paths in global_parameters.py and args.py for your own datasets.
+Please download the related video feature and QA annotations according to the links provided in the ```Results and Resources``` section. Note that the QA annotations will be saved into ```workspace/CoVGT/datasets/nextqa/``` after you clone this repo., video features into ```workspace/data/nextqa/``` and checkpoint files into ```workspace/data/save_models/nextqa/```. Change default paths in global_parameters.py and args.py for your own datasets.
 
 ## Inference
 ```
