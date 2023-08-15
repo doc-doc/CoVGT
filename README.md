@@ -1,7 +1,7 @@
 # Contrastive Video Question Answering via Video Graph Transformer
 <details open>
 <summary> <b>Abstract</b> </summary>
-This repo holds the code for our paper <a href="https://arxiv.org/abs/2302.13668">CoVGT</a> accepted to IEEE T-PAMI'23. The work extends our preliminary publication at <a href="https://link.springer.com/chapter/10.1007/978-3-031-20059-5_3">ECCV'22</a>. We highlight the following differences compared to the conference version:
+This repo holds the code for our paper <a href="https://arxiv.org/abs/2302.13668">CoVGT</a> accepted to <a href="https://ieeexplore.ieee.org/document/10172254">IEEE T-PAMI'23</a>. The work extends our preliminary publication at <a href="https://link.springer.com/chapter/10.1007/978-3-031-20059-5_3">ECCV'22</a>. We highlight the following differences compared to the conference version:
 
 * Jointly supervised and self-supervised contrastive objectives to optimize VGT.
 * Substitute BERT with a stronger language model (e.g., RoBERTa) for QA embedding.
