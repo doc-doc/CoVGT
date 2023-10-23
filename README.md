@@ -110,7 +110,7 @@ python eval_next.py --folder CoVGT_FTCoWV --mode test
     <td>-</td>
     <td><a href="https://github.com/doc-doc/CoVGT/tree/main/datasets/nextqa">Q&A</a></td>
     <td><a href="https://drive.google.com/file/d/1XLPiVY72GV0NYXGNR32wNQQMRe1J-33E/view?usp=sharing">Q&A</a></td>
-    <td>Q&A</td>
+    <td><a href="https://drive.google.com/file/d/16GBhLrtDooB4DbKgwgERY_XvfUQ-9p8J/view?usp=sharing">Q&A</a></td>
     <td><a href="https://drive.google.com/file/d/1CE04mDGiQ2EcG5zbQAgERi-EukiIPKSw/view?usp=sharing">Q&A</a></td>
     <td>Q&A</td>
     <td>Q&A</td>
