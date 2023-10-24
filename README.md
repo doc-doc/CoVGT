@@ -1,7 +1,7 @@
 # Contrastive Video Question Answering via Video Graph Transformer
 <details open>
 <summary> <b>Abstract</b> </summary>
-This repo holds the code for our paper <a href="https://arxiv.org/abs/2302.13668">CoVGT</a> accepted to IEEE T-PAMI'23. The work extends our preliminary publication at <a href="https://link.springer.com/chapter/10.1007/978-3-031-20059-5_3">ECCV'22</a>. We highlight the following differences compared to the conference version:
+This repo holds the code for our paper <a href="https://arxiv.org/abs/2302.13668">CoVGT</a> accepted to <a href="https://ieeexplore.ieee.org/document/10172254">IEEE T-PAMI'23</a>. The work extends our preliminary publication at <a href="https://link.springer.com/chapter/10.1007/978-3-031-20059-5_3">ECCV'22</a>. We highlight the following differences compared to the conference version:
 
 * Jointly supervised and self-supervised contrastive objectives to optimize VGT.
 * Substitute BERT with a stronger language model (e.g., RoBERTa) for QA embedding.
@@ -19,18 +19,19 @@ The code is based on <a href="https://github.com/sail-sg/VGT">VGT</a>.
 1. [ ] Release feature of other datasets. Please email the first author and specify the reason as the data is strictly for research purpose.
 
 ## Environment
-Assume you have installed Anaconda3, cuda version > 11.0 with gpu memory > 24G, please do the following to setup the envs:
+Assume you have installed Anaconda3, cuda version > 11.0 with gpu memory >= 24G, please do the following to setup the envs:
 ```
->conda create -n videoqa python==3.10.9
+>conda create -n videoqa python==3.8.16
 >conda activate videoqa
 >git clone https://github.com/doc-doc/CoVGT.git
 >pip install -r requirements.txt
+>conda install pytorch==1.8.1 torchvision==0.9.1 cudatoolkit=11.1 -c pytorch -c nvidia
 ```
 ## Preparation
 Please create a data folder outside this repo, so you have two folders in your workspace 'workspace/data/' and 'workspace/CoVGT/'. 
 
 Below we use NExT-QA as an example to get you farmiliar with the code. 
-Please download the related video feature and QA annotations according to the links provided in the ```Results and Resources``` section. Download and save QA annotations into ```workspace/CoVGT/datasets/nextqa/``` (already done), video features into ```workspace/data/nextqa/``` and checkpoint files into ```workspace/data/save_models/nextqa/```. Change default paths in global_parameters.py and args.py for your own datasets.
+Please download the related video feature and QA annotations according to the links provided in the ```Results and Resources``` section. Note that the QA annotations will be saved into ```workspace/CoVGT/datasets/nextqa/``` after you clone this repo., video features into ```workspace/data/nextqa/``` and checkpoint files into ```workspace/data/save_models/nextqa/```. Change default paths in global_parameters.py and args.py for your own datasets.
 
 ## Inference
 ```
@@ -109,7 +110,7 @@ python eval_next.py --folder CoVGT_FTCoWV --mode test
     <td>-</td>
     <td><a href="https://github.com/doc-doc/CoVGT/tree/main/datasets/nextqa">Q&A</a></td>
     <td><a href="https://drive.google.com/file/d/1XLPiVY72GV0NYXGNR32wNQQMRe1J-33E/view?usp=sharing">Q&A</a></td>
-    <td>Q&A</td>
+    <td><a href="https://drive.google.com/file/d/16GBhLrtDooB4DbKgwgERY_XvfUQ-9p8J/view?usp=sharing">Q&A</a></td>
     <td><a href="https://drive.google.com/file/d/1CE04mDGiQ2EcG5zbQAgERi-EukiIPKSw/view?usp=sharing">Q&A</a></td>
     <td>Q&A</td>
     <td>Q&A</td>
@@ -135,11 +136,14 @@ It will train the model and save to the folder 'save_models/nextqa/CoVGT/'. You 
 ## Citations 
 ```
 @article{xiao2023contrastive,
-  title={Contrastive Video Question Answering via Video Graph Transformer},
   author={Xiao, Junbin and Zhou, Pan and Yao, Angela and Li, Yicong and Hong, Richang and Yan, Shuicheng and Chua, Tat-Seng},
-  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
-  year={2023}
-}
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence}, 
+  title={Contrastive Video Question Answering via Video Graph Transformer}, 
+  year={2023},
+  volume={},
+  number={},
+  pages={1-14},
+  doi={10.1109/TPAMI.2023.3292266}}
 ```
 ```
 @inproceedings{xiao2022video,
