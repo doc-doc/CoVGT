@@ -136,7 +136,7 @@ It will train the model and save to the folder 'save_models/nextqa/CoVGT/'. You 
 ## Citations 
 ```
 @ARTICLE {xiao2023contrastive,
-author = {J. Xiao and P. Zhou and A. Yao and Y. Li and R. Hong and S. Yan and T. Chua},
+author = {Junbin Xiao and Pan Zhou and Angela Yao and Yicong Li and Richang Hong and Shuicheng Yan and Tat Seng Chua},
 journal = {IEEE Transactions on Pattern Analysis &amp; Machine Intelligence},
 title = {Contrastive Video Question Answering via Video Graph Transformer},
 year = {2023},
