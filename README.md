@@ -92,7 +92,7 @@ python eval_next.py --folder CoVGT_FTCoWV --mode test
     <td>feats</td>
     <td>feats</td>
     <td>feats</td>
-    <td><a href="https://drive.google.com/file/d/14efO-eeYFSKKPhhG3AUqJLOONm80xDo8/view?usp=sharing">feats</a></td>
+    <td><a href="https://drive.google.com/file/d/1Y8AlFASLUt91GajD3uNIpuYx_2LCSFG9/view?usp=sharing">feats</a></td>
   </tr>
   <tr>
     <td>-</td>
